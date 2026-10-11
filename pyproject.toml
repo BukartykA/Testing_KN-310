@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "testing-lab07"
+version = "0.1.0"
+description = "Lab 07 testing"
+authors = ["BukartykA"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "*"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "*"
+pytest-cov = "*"
+coverage = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = ["."]
+python_files = ["test_*.py", "test.py"]
+
+[tool.coverage.run]
+branch = true
+source = ["."]
