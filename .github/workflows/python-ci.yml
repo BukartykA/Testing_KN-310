@@ -32,8 +32,8 @@ jobs:
 
       - name: Run Pytest and Integration tests
         run: |
-          pytest Pytest/test_app.py -v
-          pytest Integration/test_app.py -v
+          (cd Pytest && pytest -v)
+          (cd Integration && pytest -v)
 
       - name: Generate Coverage Report (XML)
         run: |
