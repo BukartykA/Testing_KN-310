@@ -1,0 +1,5 @@
+[tool.pytest.ini_options]
+markers = [
+    "unit: швидкі юніт-тести",
+    "slow: повільні тести"
+]
