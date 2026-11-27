@@ -1,0 +1,35 @@
+name: Manual & Scheduled Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      username:
+        description: "Ваше ім'я для привітання"
+        required: true
+        default: "Executer"
+        type: string
+  schedule:
+    # Виконання щопонеділка о 10:00 UTC
+    - cron: "0 10 * * 1"
+
+jobs:
+  first_job:
+    name: Run First Job (Greeting & Condition)
+    runs-on: ubuntu-latest
+    steps:
+      - name: First step info
+        run: echo "First job started for user ${{ inputs.username || 'Scheduled Run' }}"
+
+      - name: Send greeting
+        if: github.event_name == 'workflow_dispatch' && inputs.username != 'Executer'
+        run: echo "Hello, ${{ inputs.username }}! Умова if виконалась успішно."
+
+  second_job:
+    name: Run Second Job (Environment Check)
+    needs: first_job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Second step check Python
+        run: |
+          echo "Second job running after First job"
+          python --version
